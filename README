@@ -1,0 +1,10 @@
+markit
+
+
+1. install vdom >= 0.012
+
+2. install markit
+
+    perl Makefile.PL
+    sudo make
+    sudo make install
