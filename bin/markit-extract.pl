@@ -37,6 +37,7 @@ my $vdom_file = shift or
 
 open my $in, $vdom_file or
     die "Can't open $vdom_file for reading: $!\n";
+
 my $win = VDOM::Window->new->parse_file($in);
 close $in;
 
