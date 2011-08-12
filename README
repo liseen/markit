@@ -2,6 +2,8 @@ markit
 
 
 1. install vdom >= 0.012
+    see:
+        https://github.com/agentzh/vdompm
 
 2. install markit
 
