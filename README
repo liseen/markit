@@ -5,8 +5,11 @@ markit
     see:
         https://github.com/agentzh/vdompm
 
-2. install markit
+2.  test markit
+
+    cd markit
 
     perl Makefile.PL
     sudo make
-    sudo make install
+
+    bin/comment-extract vdom/comment/amazon.cn/1.vdom
