@@ -1,0 +1,91 @@
+{
+    "samples": [
+    ],
+
+    "childPatterns": {
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": [
+                "BODY>DIV.main>DIV>DIV.first>DIV.dp-list>DIV.dp",
+            ],
+
+            "conditions": [
+               { "type": "area", "cond": ">", "value": 50000 },
+               { "type": "w", "cond": ">", "value": 700 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.dp>DIV>A"
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.dp>DIV>DIV.p2"
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.dp>DIV.dp-1>P",
+                    #"conditions": [
+                    #    {"type": "x", "cond": "=", "value": 33}
+                    #]
+                },
+
+                "strong_point": {
+                    #"required": "yes",
+                    "selector": "DIV.dp>DIV.dp-2>DIV>I.s2",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "eq", "value": "优点：" }
+                    ]
+
+                },
+
+                "weak_point": {
+                    #"required": "yes",
+                    "selector": "DIV.dp>DIV.dp-2>DIV>I.s2",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=", "value": "缺点："}
+                    ]
+                },
+
+                "summary": {
+                    #"required": "yes",
+                    "selector": "DIV.dp>DIV.dp-2>DIV>I.s2",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=", "value": "观点："}
+                    ]
+                },
+
+                "rating": {
+
+                },
+
+                "thumb_ups": {
+                    #"required": "yes",
+                    "data_type": "number",
+
+                    "selector": "DIV.dp>DIV.dp-2>DIV.p6>I.but_bg",
+                    "conditions": [
+                        {"type": "content", "cond": "=~", "value": "\\s*赞成\\s*"}
+                    ]
+                },
+
+                "thumb_downs": {
+                    #"required": "yes",
+                    "data_type": "number",
+                    "selector": "DIV.dp>DIV.dp-2>DIV.p6>I.but_bg",
+                    "conditions": [
+                        {"type": "content", "cond": "=~", "value": "\\s*反\\s*对"}
+                    ]
+                },
+           }
+        }
+    }
+}

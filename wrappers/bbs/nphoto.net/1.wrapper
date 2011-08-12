@@ -1,0 +1,32 @@
+{
+    "childPatterns": {
+        "title": {
+        },
+
+        "post": {
+            "type": "node",
+            "occur_type": "multiple",
+            "required": "yes",
+
+            "selector": "BODY>DIV#side>DIV#forums_side>FORM>TABLE#thread_body",
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "TABLE#thread_body>TBODY>TR>TD.poster>DIV>A.nickname",
+                },
+
+                "pub_time": {
+                    "required": "no",
+                    "data_type": "datetime",
+                    "selector": "TABLE#thread_body>TBODY>TR>TD.thead",
+                },
+
+                "content": {
+                    "required": "yes",
+                    "selector": "TABLE#thread_body>TBODY>TR>TD.fpost>DIV.p14",
+                }
+            }
+        }
+    }
+}

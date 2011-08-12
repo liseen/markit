@@ -1,0 +1,260 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Markit 项目Review</title>
+<link rel="stylesheet" href="perl.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body>
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#markit_______review">Markit 项目Review</a></li>
+	<ul>
+
+		<li><a href="#_________________________________">这个项目的目的是什么？</a></li>
+		<li><a href="#____________">项目背景</a></li>
+		<ul>
+
+			<li><a href="#history">history</a></li>
+			<li><a href="#general_view">General View</a></li>
+		</ul>
+
+		<li><a href="#markit___________________________">Markit系统应该具体的功能</a></li>
+		<li><a href="#markit_____________">Markit 系统设计</a></li>
+		<ul>
+
+			<li><a href="#___________________________">初步设计的数据结构</a></li>
+			<li><a href="#wrapper_induction__wi_">Wrapper Induction (WI)</a></li>
+			<li><a href="#information_extraction__ie_">Information Extraction (IE)</a></li>
+			<li><a href="#markit_____________">Markit 界面设计</a></li>
+		</ul>
+
+	</ul>
+
+	<li><a href="#markit___________________">Markit 项目开发计划</a></li>
+	<ul>
+
+		<li><a href="#______">难点</a></li>
+	</ul>
+
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<hr />
+<h1><a name="markit_______review">Markit 项目Review</a></h1>
+<p>
+</p>
+<h2><a name="_________________________________">这个项目的目的是什么？</a></h2>
+<pre>
+    web information extraction</pre>
+<pre>
+    通过标注(traning pages)  =&gt; 生成抽取器 =&gt; 根据抽取器抽取网页</pre>
+<p>
+</p>
+<h2><a name="____________">项目背景</a></h2>
+<p>
+</p>
+<h3><a name="history">history</a></h3>
+<pre>
+    根据发展的过程或者人工参与的程度分为下面几个阶段</pre>
+<dl>
+<dt><strong><a name="manually_constructed" class="item">manually-constructed</a></strong></dt>
+
+<dd>
+<pre>
+    faciliate programmers in writing extraction rules
+    need general programming language or specify programming language</pre>
+<pre>
+    WebOQL
+        hypertree</pre>
+<pre>
+        select from where 的方式来书写</pre>
+</dd>
+<dt><strong><a name="supervised" class="item">supervised</a></strong></dt>
+
+<dd>
+<pre>
+    use machine learning for automatic rule generalization</pre>
+<pre>
+    Input: a set of web pages
+    Output: a wrapper</pre>
+<pre>
+    hermes</pre>
+</dd>
+<dt><strong><a name="semi_supervised" class="item">semi-supervised</a></strong></dt>
+
+<dd>
+<pre>
+    reducing labeling and creating</pre>
+<pre>
+    IEPAD:
+        通过PAT Tree: binary suffix tree 自动发现网页中的重复结构</pre>
+<pre>
+    &lt;li&gt;&lt;b&gt;T&lt;/b&gt;&lt;b&gt;T&lt;/b&gt;&lt;b&gt;T&lt;/b&gt;&lt;/li&gt;
+    用户指定 第几个T 是什么, 分别是Title body 等等。</pre>
+</dd>
+<dt><strong><a name="unsupervised" class="item">unsupervised</a></strong></dt>
+
+<dd>
+<pre>
+    no labeling</pre>
+<pre>
+    Dela:
+        an extension of IEPAD
+    1. 剔除那些页面相同的部分
+    2. 然后再发现重复结构</pre>
+</dd>
+</dl>
+<p>
+</p>
+<h3><a name="general_view">General View</a></h3>
+<pre>
+    a general view of wi system</pre>
+<img src="wi-system.png"><p>
+</p>
+<h2><a name="markit___________________________">Markit系统应该具体的功能</a></h2>
+<pre>
+    根据标注页面能够生成Wrapper
+    能够根据多个标注页面生成Wrapper
+    根据Wrapper 能够抽取自身 和其他网页
+    编辑姑娘很容易标注 (* hongxi chun都刻意强调了此点)</pre>
+<p>
+</p>
+<h2><a name="markit_____________">Markit 系统设计</a></h2>
+<pre>
+    包含两个部分:
+        Wrapper Induction
+        Information Extraction</pre>
+<p>
+</p>
+<h3><a name="___________________________">初步设计的数据结构</a></h3>
+<a href="markit-data.html">Markit Data Structure</a><p>
+</p>
+<h3><a name="wrapper_induction__wi_">Wrapper Induction (WI)</a></h3>
+<pre>
+    Logical-based
+    Map-based
+        标注多个页面 =&gt; 根据标注结果 =&gt; {1. 筛选相关属性, 2. 记录内部vdom, 3. 都记录} =&gt; Wrapper Induction</pre>
+<pre>
+    条件选择方式分为两种：</pre>
+<pre>
+    机器学习:
+        根据统计情况来选择，分为两种情况
+        1. 非连续 背景色
+        2. 连续值 x , y 坐标等等
+            选择方差较小的</pre>
+<pre>
+    用户指定 必须满足
+        before after internal等等</pre>
+<pre>
+    初步认为每个条件的权重是一样的</pre>
+<p>
+</p>
+<h3><a name="information_extraction__ie_">Information Extraction (IE)</a></h3>
+<pre>
+    Extraction:
+        根据Selector 筛选 =&gt; ｛1. 跟据相关条件筛选,  2. 根据光谱分析投影, 3. 先筛选， 再投影}</pre>
+<p>
+</p>
+<h3><a name="markit_____________">Markit 界面设计</a></h3>
+<p>
+</p>
+<hr />
+<h1><a name="markit___________________">Markit 项目开发计划</a></h1>
+<pre>
+    按照两周一个周期的方式来安排</pre>
+<ul>
+<li>
+<pre>
+    通过Markit抽取Title， 打通Markit的各个部分
+        标注 =&gt; 生成Wrapper =&gt; 抽取</pre>
+<pre>
+    时间周期 2009.07.20 - 2009.07.31</pre>
+<pre>
+    主要工作内容
+        1. 完成只支持Selector 筛选的Markit 代码开发
+        2. VdomBrowser支持展现Model， 能够生成单节点的标注数据
+        3. 通过抽取Title 测试以上结果</pre>
+<pre>
+    完成标志：
+        能够标注、抽取Title 正文</pre>
+</li>
+<li>
+<pre>
+    实现 VdomBrowser的标注功能</pre>
+<pre>
+    时间周期 2009.08.03 - 2009.08.14</pre>
+<pre>
+    主要工作内容:
+        1. VdomBrowser 支持多节点标注
+        2. VdomBrowser 支持递归层次Pattern标注
+        3. VDomBrowser 能够自动学习pattern 多次出现的情况， 能够半自动标注
+        4. VdomBrowser 支持多页面标注
+        5. VdomBrowser 支持基本的交互
+        5. 以Comment、Param 来测试VdomBrowser的标注， 并只根据selector进行抽取</pre>
+<pre>
+    完成标志：
+        能够标注Comment、Param、 能够抽取网页比较规则的Comemnt、Param</pre>
+</li>
+<li>
+<pre>
+    实现Attri Condtion(x, y, w, h, bgcolor, fontsize... )
+        Before Condtion
+        After Condtion
+        Internal Condtion....
+    或者光谱投影算法</pre>
+<pre>
+    时间周期 2009.08.17 - 2009 - 28</pre>
+<pre>
+    主要工作内容:
+       1. 实现AttriCondtion...
+       2. 实现光谱投影算法
+       3. 实现递归、多次出现的任意model 抽取</pre>
+<pre>
+    完成标志
+        算法实现， 并验证算法</pre>
+</li>
+<li>
+<pre>
+    写Markit相关文档、给VdomBrowser 增加更多交互式的feature
+    给Markit添加上线所需要的相关脚本</pre>
+<pre>
+    时间周期 2009.08.31 - 2009.09.11</pre>
+<pre>
+    主要工作内容:
+        1. 实现上线相关脚本 作为xhunter集群一部分上线
+        2. 完成Markit 相关介绍文档</pre>
+<pre>
+    完成标志：
+        上线</pre>
+</li>
+</ul>
+<p>
+</p>
+<h2><a name="______">难点</a></h2>
+<pre>
+    1. 每个页面生成一个Wrapper, 然后合并Wrapper呢， 还是结合所有页面生成一个Wrapper?</pre>
+<pre>
+    这决定当新标注一个页面时， 应该如何生成Wrapper</pre>
+<pre>
+    2. 标注界面</pre>
+<pre>
+    3. Wrapper Induction</pre>
+
+</body>
+
+</html>

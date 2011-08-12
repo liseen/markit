@@ -1,0 +1,81 @@
+{
+    "childPatterns": {
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "",
+
+            "conditions": [
+               { "attr": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "",
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "",
+                },
+
+                "strong_point": {
+                    "required": "yes",
+                    "selector": "",
+                    "conditions": [
+                        {"attr": "pre_text", "cond": "=~", "value": "优点" }
+                    ]
+                },
+
+                "weak_point": {
+                    "required": "yes",
+                    "selector": "",
+                    "conditions": [
+                        {"attr": "pre_text", "cond": "=~", "value": "缺点"}
+                    ]
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "",
+                    "conditions": [
+                        {"attr": "pre_text", "cond": "=~", "value": "观点"}
+                    ]
+                },
+
+                "rating": {
+                    "required": "yes",
+                    "selector": "",
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "number",
+
+                    "selector": "",
+                    "conditions": [
+                        {"attr": "content", "cond": "=~", "value": "有"}
+                    ]
+                },
+
+                "thumb_downs": {
+                    "required": "yes",
+                    "data_type": "number",
+                    "selector": "",
+                    "conditions": [
+                        {"attr": "content", "cond": "=~", "value": "没"}
+                    ]
+                },
+           }
+        }
+    }
+}

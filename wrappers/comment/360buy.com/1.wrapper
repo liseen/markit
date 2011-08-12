@@ -1,0 +1,90 @@
+{
+    "samples": [
+        "http://club.360buy.com/review/109857-1-2-0.html",
+        ],
+    "childPatterns": {
+        
+        "product_name": {
+            "required": "yes",
+            "selector": "BODY>FORM>DIV.Main>DIV.left>DIV#Pro_Info>P>A.link_1",
+            },
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>FORM>DIV.Main>DIV.right>UL.PR_list",
+
+            "conditions": [
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "UL.PR_list>LI.PR_list_l>DIV>A.link_1"
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "UL.PR_list>LI.PR_list_r>DIV.re_topic>SPAN.topic>A.link_1",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "UL.PR_list>LI.PR_list_r>DIV.re_topic>SPAN.float_Right",
+                },
+
+                "strong_point": {
+                    #"required": "yes",
+                    "selector": "UL.PR_list>LI.PR_list_r>DIV.re_con>DL>DD",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "优点" }
+                    ]
+
+                },
+
+                "weak_point": {
+                    #"required": "yes",
+                    "selector": "UL.PR_list>LI.PR_list_r>DIV.re_con>DL>DD",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "不足"}
+                    ]
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "UL.PR_list>LI.PR_list_r>DIV.re_con>DL>DD",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "总结"}
+                    ]
+                },
+
+                "rating": {
+                    "required": "yes",
+                    "data_type": "(\\d)\\.jpg$",
+                    "selector": "UL.PR_list>LI.PR_list_r>DIV.re_topic>IMG",
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "number",
+                    "selector": "UL.PR_list>LI.PR_list_r>DIV.re_con>DIV.re_con_buttons>SPAN.float_Right>INPUT.btn1",
+
+                    "conditions": [
+                        {"type": "content", "cond": "=~", "value": "有用"}
+                    ]
+                },
+
+                "thumb_downs": {
+                    "required": "yes",
+                    "data_type": "number",
+                    "selector": "UL.PR_list>LI.PR_list_r>DIV.re_con>DIV.re_con_buttons>SPAN.float_Right>INPUT.btn1",
+                    "conditions": [
+                        {"type": "content", "cond": "=~", "value": "没用"}
+                    ]
+                },
+           }
+        }
+    }
+}

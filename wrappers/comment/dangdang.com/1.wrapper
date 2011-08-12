@@ -1,0 +1,102 @@
+{
+    "samples": [
+        "http://commu.dangdang.com/member/myreviewdetail.php?review_id=1334014",
+        "http://commu.dangdang.com/member/myreviewdetail.php?review_id=353662",
+        "http://commu.dangdang.com/member/myreviewdetail.php?review_id=4016139",
+        "http://commu.dangdang.com/member/myreviewdetail.php?review_id=3687465",
+        "http://commu.dangdang.com/member/myreviewdetail.php?review_id=302067",
+        "http://commu.dangdang.com/member/myreviewdetail.php?review_id=2958608",
+    ],
+
+    "childPatterns": {
+        "product_name": {
+            "selector": "BODY>FORM>DIV.single_content>DIV.single_right>DIV.comm_area>DIV.comm_detail>DIV.merch_detail>DIV.comm_books>DIV.books_c_r>H4>A"
+        },
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>FORM>DIV.single_content",
+
+            "conditions": [
+               { "type": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": [
+                        "DIV.single_content>DIV.single_left>DIV>DIV.user_m>DIV.m_import>P",
+                    ],
+                    "conditions": [
+                        {"attr": "content_length", "cond": ">", "value": 1}
+                    ]
+
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": [
+                        "DIV.single_content>DIV.single_right>DIV.comm_area>DIV#comment_info>DIV.comm_detail>DIV.merch_detail>DIV.comm_t>H3",
+                        "DIV.single_content>DIV.single_right>DIV.comm_area>DIV.comm_detail>DIV.merch_detail>DIV.comm_t>H3.link_black"
+                    ]
+                },
+
+                "pub_time": {
+                    #"required": "yes",
+                    "data_type": "datetime",
+                    "selector": [
+                        "DIV.single_content>DIV.single_right>DIV.comm_area>DIV>DIV>DIV.prev_cont>DIV.prev_time>SPAN.mode_time",
+                        "DIV.single_content>DIV.single_right>DIV.comm_area>DIV>DIV>DIV.prev_time>SPAN.mode_time"
+                    ]
+
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    #"required": "yes",
+                    "type": "node_text_combine",
+                    "selector": [
+                        "DIV.single_content>DIV.single_right>DIV.comm_area>DIV>DIV>DIV.prev_cont>P",
+                        "DIV.single_content>DIV.single_right>DIV.comm_area>DIV>DIV.prev_cont>P"
+                    ]
+                },
+
+                "rating": {
+                    "type": "node_count",
+
+                    "selector": "DIV.single_content>DIV.single_right>DIV.comm_area>DIV#comment_info>DIV.comm_detail>DIV.merch_detail>DIV.comm_books>DIV.books_c_r>DIV.source_cent>IMG",
+                    "conditions": [
+                        {"attr": "src", "cond": "=~", "value": "red"}
+                    ]
+                },
+
+                "thumb_ups": {
+                    #"required": "yes",
+                    "data_type": "number",
+
+                    "selector": [
+                        "DIV.single_content>DIV.single_right>DIV.comm_area>DIV>DIV.comm_detail>DIV.detail_reply>DIV.button_use>P>SPAN.text_use>SPAN.red",
+                        "DIV.single_content>DIV.single_right>DIV.comm_area>DIV.comm_detail>DIV.detail_reply>DIV.button_use>P>SPAN.text_use>SPAN.red"
+                    ]
+                },
+
+                "thumb_downs": {
+                    #"required": "yes",
+                    "data_type": "number",
+                    "selector": [
+                        "DIV.single_content>DIV.single_right>DIV.comm_area>DIV>DIV.comm_detail>DIV.detail_reply>DIV.button_use>P>SPAN.text_use",
+                        "DIV.single_content>DIV.single_right>DIV.comm_area>DIV.comm_detail>DIV.detail_reply>DIV.button_use>P>SPAN.text_use"
+                    ]
+                },
+           }
+        }
+    }
+}

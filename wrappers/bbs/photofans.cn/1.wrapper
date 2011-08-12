@@ -1,0 +1,48 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "required": "yes",
+            "type": "node",
+            "occur_type": "multiple",
+            "selector": [
+                "BODY>DIV>TABLE>TBODY>TR",
+             ],
+
+            "conditions": [
+                {"attr": "content", "cond": "=~", "value": "论坛级别"}
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "TR>TD>TABLE>TBODY>TR>TD>B",
+                    "conditions": [
+                        {"attr": "rx", "cond": "<", "value": 100}
+                    ]
+                },
+
+                "pub_time": {
+                    #"required": "yes",
+                    "data_type": "datetime",
+                    "selector": "TR>TD",
+                    "conditions": [
+                        {"attr": "rx", "cond": "<", "value": 100}
+                    ]
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": "TR>TD>TABLE>TBODY>TR>TD",
+                    "conditions": [
+                        {"attr": "rx", "cond": ">", "value": 100},
+                        {"attr": "rx", "cond": "<", "value": 400}
+                    ]
+                }
+            }
+        }
+    }
+}

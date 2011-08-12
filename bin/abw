@@ -1,0 +1,12 @@
+#!/bin/sh
+
+bin=$(readlink -f `dirname $0`)
+cd $bin/..
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <host>"
+    exit 1;
+fi
+
+mkdir -p wrappers/bbs/$1
+cp wrappers/bbs/default.wrapper wrappers/bbs/$1/1.wrapper

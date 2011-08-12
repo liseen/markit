@@ -1,0 +1,43 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "required": "yes",
+            "type": "node",
+            "occur_type": "multiple",
+            "selector": [
+                "BODY>DIV.wrap>DIV.bbsarea>DIV.articleMain>DIV",
+            ],
+
+            "conditions": [
+                {"attr": "className", "cond": "=~" , "value": "article"}
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV>DIV.authorInfo>DIV.name>A",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+
+                    "selector": [
+                        "DIV>DIV.archiveBody>DIV.articleTools>SPAN.right",
+                    ]
+                },
+
+                "content": {
+                    "required": "yes",
+                    "selector": [
+                        "DIV>DIV.archiveBody>DIV.articleCont>DIV.clip"
+                    ]
+                }
+            }
+        }
+    }
+}

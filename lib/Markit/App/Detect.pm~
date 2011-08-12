@@ -1,0 +1,54 @@
+package Markit::App::Detect;
+
+use strict;
+use warnings;
+
+use JSON::XS;
+use File::Spec::Functions;
+use Params::Util qw(_HASH _STRING _ARRAY0 _ARRAY _SCALAR);
+
+sub new {
+    my $class = ref $_[0] ? ref shift : shift;
+
+    my $wrapper_dir = shift;
+    if (!$wrapper_dir) {
+        die "wrapper dir not specified\n"
+    }
+
+    my $app_extractor = new Markit::App::Extractor($wrapper_dir);
+    my $self = bless {
+        wrapper_dir => $wrapper_dir,
+        app_extractor => $app_extractor
+    }, $class;
+
+    $self;
+};
+
+sub detect {
+    my ($self, $app, $url, $win) = @_;
+
+    if (!$app || !$url || !$win) {
+        die "No app or url or win specified\n"
+    }
+
+    my $domain = Markit::Util::url2domain($url);
+    if (!$domain) {
+        die "cannot get domain for url $url";
+    }
+    my $wrapper_list = $self->find_wrapper_list($app, $domain);
+    if (!$wrapper_list) {
+        die "No wrapper for domain: $domain found!\n";
+    }
+
+    my $extractor = $self->{extractor};
+
+    my $doc = $win->document;
+    return $extractor->extract($wrapper_list, $doc);
+}
+sub detect {
+
+
+}
+
+
+1;

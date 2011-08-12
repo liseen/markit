@@ -1,0 +1,34 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "type": "node",
+            "occur_type": "multiple",
+            "required": "yes",
+            "selector": [
+                "BODY>DIV.warp>DIV",
+             ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV>DIV.c_1_2>DIV.c_1_l>DIV.c_1_l_1",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV>DIV.c_1_2>DIV.c_1_r>DIV.c_1_r_1>UL>LI.c_1_r_1-1",
+                },
+
+                "content": {
+                    "required": "yes",
+                    "selector": "DIV>DIV.c_1_2>DIV.c_1_r>DIV.c_1_r_2",
+                }
+            }
+        }
+    }
+}

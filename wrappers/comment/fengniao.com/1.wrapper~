@@ -1,0 +1,88 @@
+{
+    "samples": [
+       "http://product.fengniao.com/detail/113/112818/review_2.shtml"
+    ],
+
+    "childPatterns": {
+        "product_name": {
+            "selector": "BODY>DIV.div_body>DIV.A_1>H1",
+            "filters": "点评\\s*$"
+        },
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV.div_body>DIV.bodyW>DIV.Al>DIV.Al_4>DIV.C_1",
+
+            "conditions": [
+               { "type": "area", "cond": ">", "value": 50000 }
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.C_1>DIV.C_11>DIV.picn>A.fi"
+                },
+
+                "title": {
+                    "required": "no",
+                    "selector": ""
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.C_1>DIV.C_12>DIV.C_121>DIV.r"
+
+                },
+
+                "strong_point": {
+                    "required": "no",
+                    "selector": "",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "优点" }
+                    ]
+                },
+
+                "weak_point": {
+                    "required": "no",
+                    "selector": "",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "缺点"}
+                    ]
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.C_1>DIV.C_12>DIV.C_122"
+                },
+
+                "rating": {
+                    "required": "yes",
+                    "data_type": "number",
+                    "selector": "DIV.C_1>DIV.C_11>TABLE>TBODY>TR>TD.f14b>DIV>DIV.ho12"
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "number",
+                    "selector": "DIV.C_1>DIV.C_12>DIV.C_123>DIV.r>SPAN",
+                    "conditions": [
+                        {"type": "id", "cond": "=~", "value": "good"}
+                    ]
+                },
+
+                "thumb_totals": {
+                    "required": "yes",
+                    "data_type": "number",
+                    "selector": "DIV.C_1>DIV.C_12>DIV.C_123>DIV.r>SPAN",
+                    "conditions": [
+                        {"type": "id", "cond": "=~", "value": "all"}
+                    ]
+                }
+           }
+        }
+    }
+}

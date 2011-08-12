@@ -1,0 +1,34 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "type": "node",
+            "occur_type": "multiple",
+            "required": "yes",
+            "selector": [
+                "BODY>DIV#bbs_wrap>DIV#bbs_main>DIV#main_left>FORM>TABLE.tableborder",
+             ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "TABLE.tableborder>TBODY>TR>TD.altbg4>DIV.use-info>STRONG>A",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "TABLE.tableborder>TBODY>TR>TD.altbg1>SPAN.fleft",
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": "TABLE.tableborder>TBODY>TR>TD.altbg3>TABLE>TBODY>TR>TD>DIV.bbs_content",
+                }
+            }
+        }
+    }
+}

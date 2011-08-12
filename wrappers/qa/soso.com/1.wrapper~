@@ -1,0 +1,42 @@
+{
+    "samples": [
+        "http://wenwen.soso.com/z/q129221849.htm?w=iphone&spi=1&sr=4&w8=iphone&qf=10&rn=162171iphone",
+        "http://wenwen.soso.com/z/q166437284.htm",
+    ],
+
+    "childPatterns": {
+        "question": {
+            "occur_type": "single",
+            "required": "yes",
+            "selector": "BODY>DIV#s_page>DIV#s_main>DIV.container>DIV>DIV.question_wrap>DIV.question_main>H3"
+        },
+
+        "description": {
+            "type": "text",
+            "occur_type": "single",
+            "selector": "BODY>DIV#s_page>DIV#s_main>DIV.container>DIV>DIV.question_wrap>DIV.question_main>DIV.question_con"
+        },
+
+        "pub_time": {
+            "required": "yes",
+            "data_type": "datetime",
+            "selector": "BODY>DIV#s_page>DIV#s_main>DIV.container>DIV.column1>DIV.question_wrap>DIV.question_main>DIV.sign_bar>DIV.user>SPAN"
+        },
+
+        "best_answers": {
+            "occur_type": "multiple",
+            "selector": [
+                "BODY>DIV#s_page>DIV#s_main>DIV.container>DIV>DIV.best_answer>DIV.best_answer_main>DIV.answer_con>PRE",
+                "BODY>DIV#s_page>DIV#s_main>DIV.container>DIV>DIV.best_answer>DIV.best_answer_main>DIV.pump_wrap>DIV.pump_answer>DIV.pump_con"
+            ]
+        },
+
+        "other_answers": {
+            "occur_type": "multiple",
+            "selector": [
+                 "BODY>DIV#s_page>DIV#s_main>DIV.container>DIV>DIV.my_answer>DIV.answer_main>DIV.answer_con>PRE", 
+                 "BODY>DIV#s_page>DIV#s_main>DIV.container>DIV>DIV.my_answer>DIV.answer_main>DIV.pump_wrap>DIV.pump_answer>DIV.pump_con"
+            ]
+        }
+    }
+}

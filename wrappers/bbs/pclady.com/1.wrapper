@@ -1,0 +1,37 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "required": "yes",
+            "type": "node",
+            "occur_type": "multiple",
+
+            "selector": [
+                "BODY>DIV#content>DIV#topic_wrap>DIV#post_list>FORM#rewardform>DIV.post_wrap",
+                "BODY>DIV#content>DIV#topic_wrap>DIV#post_list>DIV.psot_wrap_first"
+             ],
+             "recall": "selector",
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": "DIV>TABLE>TBODY>TR>TD.post_left>DIV.user_info>UL>LI.nickname>A",
+                },
+
+                "pub_time": {
+                    #"required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV>TABLE>TBODY>TR>TD.post_right>DIV.post_info>DIV.post_time",
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": "DIV>TABLE>TBODY>TR>TD.post_right>DIV.post_main>DIV.post_message>DIV.normal_msg>TABLE>TBODY>TR>TD.post_msg_wrap>DIV.post_msg",
+                }
+            }
+        }
+    }
+}

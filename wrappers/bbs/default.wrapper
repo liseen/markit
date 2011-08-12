@@ -1,0 +1,34 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "required": "yes",
+            "type": "node",
+            "occur_type": "multiple",
+            "selector": [
+                "",
+             ],
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": "",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "",
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": "",
+                }
+            }
+        }
+    }
+}

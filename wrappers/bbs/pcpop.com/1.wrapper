@@ -1,0 +1,45 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "type": "node",
+            "occur_type": "multiple",
+            "required": "yes",
+            "selector": [
+                "BODY>FORM>DIV#wrapper>DIV",
+             ],
+
+             "conditions": [
+                {"attr": "content", "cond": "=~", "value": "发表于"},
+             ],
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": "DIV>TABLE>TBODY>TR>TD.t_user>DIV>DIV>SPAN.cuti>A",
+                    "conditions": [
+                        {"attr": "content", "cond": "!~", "value": "个人资料"},
+                    ]
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV>TABLE>TBODY>TR>TD>TABLE.t_msg>TBODY>TR>TD>DIV>SPAN",
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": "DIV>TABLE>TBODY>TR>TD>TABLE.t_msg>TBODY>TR>TD>DIV>DIV",
+                    "conditions": [
+                        {"attr": "rx", "cond": ">", "value": 50},
+                        {"attr": "rx", "cond": "<", "value": 300},
+                    ]
+                }
+            }
+        }
+    }
+}

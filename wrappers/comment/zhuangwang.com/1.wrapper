@@ -1,0 +1,69 @@
+{   "samples": [
+       "http://www.zhuangwang.com/proshow.171.htm",
+       ],
+    "childPatterns": {
+        "product_name": {
+            "selector": "BODY>DIV>DIV>DIV>DIV>DIV>DIV>DIV.left-top",
+            },
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": " BODY>DIV>DIV>DIV>DIV>DIV>DIV>DIV#pingl>DIV.hdstyle>DIV>DIV.left-pingl",
+
+            "conditions": [
+               { "attr": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.left-pingl>DIV.user-xx>DIV.left-fujia>SPAN.left-user>A",
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.left-pingl>DIV.user-xx>DIV.left-usertt>A.left-sts",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.left-pingl>DIV.user-xx>DIV.left-usertt>DIV.left-usert",
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.left-pingl>DIV.user-xx>DIV.left-dp",
+                    "conditions": [
+                    ]
+                },
+
+                "rating": {
+                    "required": "no",
+                    #"selector": "DIV.left-ping1>DIV.user-xx>DIV.left-pingj>SPAN",
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "number",
+
+                    "selector": "DIV.left-pingl>DIV.user-xx>DIV.left-fujia>SPAN.left-zc",
+                    "conditions": [
+                        {"attr": "content", "cond": "=~", "value": "支持"}
+                    ]
+                },
+
+                "thumb_downs": {
+                },
+           }
+        }
+    }
+}

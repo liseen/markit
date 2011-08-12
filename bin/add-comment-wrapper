@@ -1,0 +1,24 @@
+#!/bin/sh
+
+app=comment
+
+host=$1
+
+if [ -z "$host" ]
+then
+    echo "Usage: $0 <host>"
+    exit;
+fi
+
+bin=$(readlink -f `dirname $0`)
+cd $bin/..
+
+if [ -d "./wrappers/$app/$host" ]
+then
+    echo "$app $host already exists"
+else
+    mkdir -p "./wrapper/$app/$host"
+    mkdir -p "./vdom/$app/$host"
+    cp tmp/vdom "./vdom/$app/$host/1.vdom"
+fi
+

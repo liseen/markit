@@ -1,0 +1,92 @@
+{
+    "samples": [
+        "http://product.weyii.com/detail-3248.html",
+        ],
+    "childPatterns": {
+        "product_name": {
+            "required": "yes",
+            "selector": "BODY>DIV.fullscreen>DIV.div940>DIV#maincontent>DIV#leftframe>DIV#mercframe>DIV#info>H1#name",
+            },
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector":"BODY>DIV.fullscreen>DIV.div940>DIV#maincontent>DIV#leftframe>DIV#commentframe>DIV#commentcon>DIV#strangercomm>DIV.comm",
+
+
+            "conditions": [
+               { "attr": "area", "cond": ">", "value": 50000 },
+              #{ "type": "w", "cond": ">", "value":450 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.comm>DIV#con>DIV#user>SPAN.name>A",
+                },
+
+                "title": {
+                    "required": "no",
+                    "selector": "",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.comm>DIV#con>DIV#time",
+                },
+
+                "strong_point": {
+                    "required": "no",
+                    "selector": "",
+                    "conditions": [
+                    ]
+                },
+
+                "weak_point": {
+                    "required": "no",
+                    "selector": "",
+                    "conditions": [
+                    ]
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.comm>DIV#con>DIV#comms",
+                    "conditions": [
+                    ]
+                },
+
+                "rating": {
+                    "required": "yes",
+                    "type": "id",
+                    "data_type": "number",
+                    "selector": "DIV.comm>DIV#con>DIV#reco>SPAN.star",
+                    "conditions": [
+                        #{"attr": "id", "cond": "=~", "value": "star"}
+                        ]
+                },
+
+                "thumb_ups": {
+                    "required": "no",
+                    "data_type": "number",
+
+                    "selector": "",
+                    "conditions": [
+                        {"attr": "content", "cond": "=~", "value": "有"}
+                    ]
+                },
+
+                "thumb_downs": {
+                    "required": "no",
+                    "data_type": "number",
+                    "selector": "",
+                    "conditions": [
+                        {"attr": "content", "cond": "=~", "value": "没"}
+                    ]
+                },
+           }
+        }
+    }
+}

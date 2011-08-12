@@ -1,0 +1,83 @@
+{
+    "samples": [
+        "http://dp.cnmo.com/detail_155621.html",
+        ],
+    "childPatterns": {
+        "product_name": {
+            "required": "yes",
+            "selector": "BODY>DIV.div_body>DIV.bodyW>DIV.pM>DIV.Pm_2>DL.Pm_21>DT>A.lan12a",
+            },
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV.div_body>DIV.bodyW>DIV.pM>DIV#result>DIV.Pm_5",
+
+            "conditions": [
+               { "attr": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.Pm_5>DIV.Pm_51>DIV.Pm_512>A.lan12a",
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.Pm_5>DIV.Pm_5t"
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.Pm_5>DIV.Pm_52>DIV.Pm_522>P.hui612",
+                },
+
+                "strong_point": {
+                    #"required": "yes",
+                    "selector": "DIV.Pm_5>DIV.Pm_52>DIV.Pm_522>DIV",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "优点" }
+                    ]
+                },
+
+                "weak_point": {
+                    #"required": "yes",
+                    "selector": "DIV.Pm_5>DIV.Pm_52>DIV.Pm_522>DIV",
+                    "conditions": [
+                        {"attr": "pre_text", "cond": "=~", "value": "缺点"}
+                    ]
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.Pm_5>DIV.Pm_52>DIV.Pm_522",
+                    "filters": "标签:.*$"
+                },
+
+                "rating": {
+                    #"required": "yes",
+                    "data_type": "number",
+                    "selector": "DIV.Pm_5>DIV.Pm_52>DIV.Pm_521",
+                    "conditions": [
+                    ]
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "支持\\((\\d+)\\)",
+
+                    "selector": "DIV.Pm_5>DIV.Pm_52>DIV.Pm_522>P.hui612",
+                },
+
+                "thumb_downs": {
+                    "required": "yes",
+                    "data_type": "反对\\((\\d+)\\)",
+                    "selector": "DIV.Pm_5>DIV.Pm_52>DIV.Pm_522>P.hui612",
+                },
+           }
+        }
+    }
+}

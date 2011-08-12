@@ -1,0 +1,66 @@
+{
+    "samples": [
+        "http://brand.lady8844.com/shiseido/133981.html",
+        ],
+    "childPatterns": {
+        "product_name": {
+            "required": "yes",
+            "selector": "BODY>DIV.wrap>DIV.main>DIV.xmain>DIV.main1>DIV.main1c>DIV.main12>DIV.main12list>H1",
+            },
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV.wrap>DIV.main>DIV.xmain>DIV.main2>DIV.col2>DIV.col2co               nt>DIV#pinglun>DIV#pinglun_main>SPAN#span_pinglun>TABLE",
+
+            "conditions": [
+               #{ "attr": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "TABLE>TBODY>TR>TD>SPAN",
+                },
+
+                "title": {
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "TABLE>TBODY>TR>TD",
+                    "conditions": [
+                        {"attr": "content", "cond": "=~", "value": "发表"}
+                        ]
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "TABLE>TBODY>TR>TD",
+                    "conditions": [
+                        {"attr": "content", "cond": "!~", "value": "爱美网网友"},
+
+                        {"attr": "content", "cond": "!~", "value": "发表"}
+                    ]
+                },
+
+                "rating": {
+                },
+
+                "thumb_ups": {
+                },
+
+                "thumb_downs": {
+                },
+           }
+        }
+    }
+}

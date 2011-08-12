@@ -1,0 +1,73 @@
+{   "samples": [
+         "http://www.urcosme.com/search/final-16431.htm",
+         "http://www.urcosme.com/search/final-10101.htm",
+         ],
+    "childPatterns": {
+       "product_name": {
+            "required": "yes",
+            "selector": "BODY#search_final>DIV#container>DIV.contentpageContainer>DIV#pathpage_bottom>STRONG",
+            "conditions": [
+                { "attr": "content", "cond": "!~", "value": "商品使用心得" }
+                ],
+                },
+       "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY#search_final>DIV#container>DIV.contentpageContainer>DIV#contentpage>DIV#productContentContainer>DIV#productMenuMain>DIV#reviews>DIV",
+
+            "conditions": [
+               { "attr": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV>DIV#contentBeautydiaryMainborder>DIV>DIV#contentBeautydiaryReviewCompleteList>P.wishlistTitle>A",
+                },
+
+                "title": {
+                    "required": "no",
+                    "selector": "",
+                },
+
+                "pub_time": {
+                    "required": "no",
+                    "selector": "",
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "rating": {
+                    "required": "yes",
+                    "type": "node_count",
+                    "selector": "DIV>DIV#contentBeautydiaryMainborder>DIV>DIV#contentBeautydiaryReviewCompleteList>SPAN>IMG",
+                    "conditions": [
+                    ]
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV>DIV#contentBeautydiaryMainborder>DIV>DIV#contentBeautydiaryReviewCompleteList>DIV.description>DIV.content",
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "number",
+
+                    "selector": "DIV>DIV#contentBeautydiaryMainborder>DIV>DIV#contentBeautydiaryReviewCompleteList>DIV.reviewbuttom>STRONG>A.thickbox",
+                    "conditions": [
+                    ]
+                },
+
+                "thumb_downs": {
+                },
+           }
+        }
+    }
+}

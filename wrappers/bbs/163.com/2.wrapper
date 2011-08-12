@@ -1,0 +1,42 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "required": "yes",
+            "type": "node",
+            "occur_type": "multiple",
+            "selector": [
+                "BODY>DIV.wrapper>DIV.mainBg>DIV.main>DIV>DIV.replies>DIV.reply"
+            ],
+
+            "conditions": [
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.reply>DIV.inner>SPAN.author>SPAN.from"
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+
+                    "selector": [
+                        "DIV.reply>DIV.inner>SPAN.postTime",
+                    ]
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": [
+                        "DIV.reply>DIV.inner>DIV.body>DIV"
+                    ]
+                }
+            }
+        }
+    }
+}

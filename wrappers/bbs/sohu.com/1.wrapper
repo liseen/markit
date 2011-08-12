@@ -1,0 +1,43 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "type": "node",
+            "occur_type": "multiple",
+            "selector": [
+                "BODY>DIV#main>DIV#content>DIV#left_post>DIV.content01",
+                "BODY>DIV#main>DIV#content>DIV#left_post>DIV.content02",
+             ],
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": [
+                        "DIV.content01>DIV.member>TABLE>TBODY>TR>TD.pic>P>SPAN.fb>A",
+                        "DIV.content02>DIV.back>DIV#mesg_width>UL>LI.borderblue>SPAN.txtleft>A",
+                    ]
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": [
+                        "DIV.content01>DIV.member>TABLE>TBODY>TR>TD>DIV.post_tool>UL>LI.borderblue>SPAN.txtright",
+                        "DIV.content02>DIV.back>DIV.tag>UL>P.txtgray",
+                    ]
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": [
+                        "DIV.content01>DIV.article>DIV.para1",
+                        "DIV.content02>DIV.back>DIV#mesg_width>DIV.para2",
+                    ]
+                }
+            }
+        }
+    }
+}

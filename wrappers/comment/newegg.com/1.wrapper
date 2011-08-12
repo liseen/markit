@@ -1,0 +1,75 @@
+{
+    "samples": [
+        "http://www.newegg.com.cn/Product/36-c40-861/Reviews.htm",
+        ],
+    "childPatterns": {
+        "product_name": {
+            "selector": "BODY#review>DIV#wrap>DIV#body>DIV#main>DIV.intro>DIV.headline>H1",
+            },
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY#review>DIV#wrap>DIV#body>DIV#main>DIV#tabCot_userData>DIV.tabCot>DIV.modC>DIV.topic",
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.topic>UL>LI>SPAN"
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.topic>DIV.topicCot>H5>EM"
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.topic>DIV.topicCot>DIV.topicPanel>SPAN"
+                },
+
+                "strong_point": {
+                    #"required": "yes",
+                    "selector": "",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "优点" }
+                    ]
+                },
+
+                "weak_point": {
+                    #"required": "yes",
+                    "selector": "",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "缺点"}
+                    ]
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.topic>DIV.topicCot>DIV.post"
+                },
+
+                "rating": {
+                    "type": "className",
+                    "data_type": "number",
+                    #"required": "yes",
+                    "selector": "DIV.topic>DIV.topicCot>H5>A"
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "(\\d+)",
+                    "selector": "DIV.topic>DIV.topicCot>DIV.topicPanel>P>SPAN>LABEL"
+                },
+
+                "thumb_totals": {
+                    "required": "yes",
+                    "data_type": "\\/(\\d+)",
+                    "selector": "DIV.topic>DIV.topicCot>DIV.topicPanel>P>SPAN>LABEL"
+                }
+           }
+        }
+    }
+}

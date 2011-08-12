@@ -1,0 +1,34 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "type": "node",
+            "occur_type": "multiple",
+            "required": "yes",
+            "selector": [
+                "BODY>DIV#wrap>DIV#content>DIV#Left_Bar>FORM#delpost>DIV.Restore_Con",
+             ],
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": "DIV.Restore_Con>DIV.Staff_Text>P.Other_Info>SPAN>A",
+                },
+
+                "pub_time": {
+                    #"required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.Restore_Con>DIV.Staff_Text>P.Other_Info>SPAN",
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": "DIV.Restore_Con>DIV.Staff_Text>DIV.text",
+                }
+            }
+        }
+    }
+}

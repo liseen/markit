@@ -1,0 +1,132 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Markit Data Structure</title>
+<link rel="stylesheet" href="perl.css" type="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body>
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#markit_data_structure">Markit Data Structure</a></li>
+	<ul>
+
+		<li><a href="#model_or_schema">Model or Schema</a></li>
+		<li><a href="#annotated_data">Annotated Data</a></li>
+		<li><a href="#wrapper">Wrapper</a></li>
+		<li><a href="#result">Result</a></li>
+	</ul>
+
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="markit_data_structure">Markit Data Structure</a></h1>
+<p>
+</p>
+<h2><a name="model_or_schema">Model or Schema</a></h2>
+<pre>
+    default attribute
+    type = &quot;text&quot; occur_type: &quot;single&quot;</pre>
+<pre>
+    {
+        patterns : {
+            comment: {
+                type: &quot;node&quot;,
+                occur_type: &quot;multiple&quot;,
+                patterns: {
+                    title: {},
+                    pub_date: {},
+                    body: {}
+                }
+            }
+        }
+    }</pre>
+<p>
+</p>
+<h2><a name="annotated_data">Annotated Data</a></h2>
+<pre>
+    {
+        url: &quot;<a href="http://www.yahoo.cn&quot">http://www.yahoo.cn&quot</a>;,
+        patterns: {},
+        data: {
+            comment: [
+                {xpath: [], title:[], pub_date:[], body:[]},
+                {xpath: [], title:[], pub_date:[], body:[]},
+                {xpath: [], title:[], pub_date:[], body:[]},
+            ]
+        }
+    }</pre>
+<pre>
+    =&gt;</pre>
+<pre>
+    {
+        url: &quot;<a href="http://www.yahoo.cn&quot">http://www.yahoo.cn&quot</a>;,
+        patterns : {
+            comment: {
+                type: &quot;node&quot;,
+                occur_type: &quot;multiple&quot;,
+                xpath: [],</pre>
+<pre>
+                patterns: {
+                    title: {},
+                    pub_date: {},
+                    body: {}
+                }
+            }
+        }
+    }</pre>
+<p>
+</p>
+<h2><a name="wrapper">Wrapper</a></h2>
+<pre>
+    {
+        domain: &quot;yahoo.cn&quot;,
+        patterns : {
+            comment: {
+                type: &quot;node&quot;,
+                occur_type: &quot;multiple&quot;,
+                selector: &quot;&quot;,
+                conditions: [
+                    {type: &quot;&quot;, },
+                    {type: &quot;&quot;, },
+                ],</pre>
+<pre>
+                vdoms: [&quot;&quot;, &quot;&quot;],</pre>
+<pre>
+                patterns: {</pre>
+<pre>
+                }
+            }
+       }
+    }</pre>
+<p>
+</p>
+<h2><a name="result">Result</a></h2>
+<pre>
+    {
+        url:&quot;&quot;,
+        patterns: {},
+        result:{
+            comment: [
+                {title: &quot;&quot;, body: &quot;&quot;},
+            ]
+        }
+    }</pre>
+
+</body>
+
+</html>

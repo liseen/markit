@@ -1,0 +1,82 @@
+{
+    "samples": [
+        "http://price.ea3w.com/digital_tv/review179216.shtml"
+    ],
+
+    "data": {
+        "rating_base": 10
+    },
+
+    "childPatterns": {
+        "product_name": {
+            "required": "yes",
+            "selector": "BODY>DIV.div_body>DIV.bodyW>DIV.zlf1>DIV.zlf1_1>H1>FONT",
+        },
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV.div_body>DIV.div_body>DIV.bodyW>DIV.zlf>DIV.dlf0>FORM",
+
+            "conditions": [
+               { "type": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "FORM>DIV.dlf1>DIV.dlf2>DIV.dlf3>DIV.dlf4>A.fi",
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "FORM>DIV.dlf1>DIV.dlf6>A",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+
+                    "selector": "FORM>DIV.dlf1>DIV.dlf2>DIV.dlf3>DIV.dlf4",
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "FORM>DIV.dlf1>DIV.dlf6",
+                    "conditions": [
+                    ]
+                },
+
+                "rating": {
+                    "required": "yes",
+                    "selector": "FORM>DIV.dlf1>DIV.dlf2>DIV.dlf5>DIV.hl12",
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "(\\d+)\\s*/\\s*\\d+",
+
+                    "selector": "FORM>DIV.dlf1>DIV.dlf7>A",
+                    "conditions": [
+                    ]
+                },
+
+                "thumb_totals": {
+                    "required": "yes",
+                    "data_type": "\\d+\\s*/\\s*(\\d+)",
+                    "selector": "FORM>DIV.dlf1>DIV.dlf7>A",
+                    "conditions": [
+                    ]
+                },
+           }
+        }
+    }
+}

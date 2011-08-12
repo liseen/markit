@@ -1,0 +1,76 @@
+{   "samples": [
+        "http://product.rayli.com.cn/product/01/82/product_18296_1.html",
+        ],
+    "childPatterns": {
+        "product_name": {
+            "required": "yes",
+            "selector": "BODY>DIV.w960>DIV.w717>DIV.left_top>DIV.left>DIV.right>DIV.fl>DIV.title",
+            },
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV.w960>DIV.w717>DIV.w717>DIV>DIV>DIV>DIV.wycp>DIV.kuai",
+
+            "conditions": [
+               { "attr": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.kuai>DIV.right_con>DIV.content1>DIV.line1>DL>DT>SPAN.a01>A",
+                },
+
+                "title": {
+                    "required": "no",
+                    "selector": "",
+                },
+
+                "pub_time": {
+                    "required": "no",
+                    "selector": "",
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.kuai>DIV.right_con>DIV.content2>DIV.line3>DL>DD.a15>A",
+                    "conditions": [
+                    ]
+                },
+
+                "rating": {
+                    "required": "yes",
+                    "data_type": "(\\d\\.\\d{2})",
+                    "selector": "DIV.kuai>DIV.right_con>DIV.content1>DIV.line2>DL>DT>DIV>SPAN.a02",
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "number",
+
+                    "selector": "DIV.kuai>DIV.right_con>DIV.content2>DIV.line4>DL>DT.a11>SPAN",
+                    "conditions": [
+                        {"attr": "id", "cond": "=~", "value": "up"}
+                    ]
+                },
+
+                "thumb_downs": {
+                    "required": "yes",
+                    "data_type": "number",
+                    "selector": "DIV.kuai>DIV.right_con>DIV.content2>DIV.line4>DL>DT.a11>SPAN",
+                    "conditions": [
+                        {"attr": "id", "cond": "=~", "value": "down"}
+                    ]
+                },
+           }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+bin=$(readlink -f `dirname $0`)
+cd $bin/..
+
+if [ ! -d ~/tmp ]
+then
+    mkdir ~/tmp
+fi
+
+#for host in 360buy.com fengniao.com pchome.net zol.com newegg.com  pconline.com xitek.com it168.com pcpop.com
+#for host in xitek.com it168.com pcpop.com
+#for host in it168.com
+#for host in pcpop.com
+#for host in dangdang.com pclady.com ea3w.com badmintoncn douban.com
+
+for host in badmintoncn.com
+do
+    echo $host
+    cat ~/misc/comment/header.txt > ~/misc/comment/$host.txt
+    bin/batch-extract --app=comment data/comment/$host.vdoms >> ~/misc/comment/$host.txt
+done

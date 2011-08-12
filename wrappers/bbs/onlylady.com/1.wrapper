@@ -1,0 +1,34 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "type": "node",
+            "required": "yes",
+            "occur_type": "multiple",
+            "selector": [
+                "BODY>DIV#container>DIV#myleft>FORM#moderate>DIV.floor",
+             ],
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": "DIV.floor>DIV.head_info>SPAN.name>A.name_link>STRONG",
+                },
+
+                "pub_time": {
+                    #"required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.floor>DIV.floor_cont>DIV.floor_time>SPAN.time",
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": "DIV.floor>DIV.floor_cont>TABLE>TBODY>TR>TD",
+                }
+            }
+        }
+    }
+}

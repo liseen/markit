@@ -1,0 +1,64 @@
+{
+    "childPatterns": {
+        "title": {
+        },
+
+        "post": {
+            "required": "yes",
+            "type": "node",
+            "occur_type": "multiple",
+            "required": "yes",
+
+            "find_alg": {
+                "alg": "repeat",
+                "args": {
+                    "min_width": 600,
+                    "min_height": 230,
+                },
+            },
+
+            "recall": "selector",
+
+            # TODO recall
+            #"recall_conds": [
+            #    {"by": "same_selector"},
+            #    {"by": "editdistance", "value": "0.7"}
+            #],
+
+            "conditions": [
+                {"attr": "w", "cond": ">", "value": 600},
+                {"attr": "h", "cond": ">", "value": 200},
+                {"attr": "content", "cond": "=~", "value": "发表于"}
+            ],
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": [
+                        "DIV>TABLE>TBODY>TR>TD.postauthor>DIV.postinfo>A",
+                        "DIV.mainbox>TABLE>TBODY>TR>TD.postauthor>CITE>A.dropmenu",
+                    ]
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": [
+                        "DIV>TABLE>TBODY>TR>TD.postcontent>DIV.postinfo>DIV.posterinfo>DIV.authorinfo>EM",
+                        "DIV.mainbox>TABLE>TBODY>TR>TD.postcontent>DIV.postinfo",
+                    ]
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": [
+                        "DIV>TABLE>TBODY>TR>TD.postcontent>DIV.defaultpost>DIV.postmessage>DIV>TABLE>TBODY>TR>TD.t_msgfont",
+
+                        "DIV.mainbox>TABLE>TBODY>TR>TD.postcontent>DIV.postmessage>DIV.t_msgfont",
+                    ]
+
+                }
+            }
+        }
+    }
+}

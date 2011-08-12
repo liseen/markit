@@ -1,0 +1,80 @@
+{
+    "samples": [
+        "http://product.pchome.net/mobile_phone_nokia_x6/comment_160268_0.html"
+    ],
+
+    "childPatterns": {
+        "product_name": {
+            "selector": "BODY>DIV.detail_product>DIV.left>DIV.market>DIV.product_titile>DIV.clearfix>DL>DT>H1.hWidth",
+            "filters":  "点评\\s*$"
+        },
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV.detail_product>DIV.left>DIV.market>DIV.commend_list>DIV.commend_>DL.list>DD",
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": "DL.list>DD>P",
+                    "conditions": [
+                        #{"attr": "content", "cond": "=~", "value": "打分:$"},
+                    ],
+                },
+
+                "title": {
+                    #"required": "yes",
+                    "selector": "DL.list>DT>A",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DD>P.time",
+                },
+
+                "strong_point": {
+                    "required": "no",
+
+                },
+
+                "weak_point": {
+                    "required": "no",
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DD>P.detail",
+                },
+
+                "rating": {
+                    "data_type": "number",
+                    "required": "no",
+                    "selector": "DD>P>SPAN",
+                    "conditions": [
+                        {"attr": "content", "cond": "=~", "value": "打分"}
+                    ],
+                },
+
+                "thumb_ups": {
+                    "required": "no",
+                    "data_type": "\\((\\d+)\\)",
+                    "selector": "DD>P.yesorno",
+                    "conditions": [
+                    ],
+                },
+
+                "thumb_downs": {
+                    "required": "no",
+                    "data_type": "\\((\\d+)\\)$",
+                    "selector": "DD>P.yesorno",
+                    "conditions": [
+                    ],
+                }
+           }
+        }
+    }
+}

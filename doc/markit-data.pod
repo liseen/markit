@@ -1,0 +1,88 @@
+=head1 Markit Data Structure
+
+=head2 Model or Schema
+
+    default attribute
+    type = "text" occur_type: "single"
+
+    {
+        patterns : {
+            comment: {
+                type: "node",
+                occur_type: "multiple",
+                patterns: {
+                    title: {},
+                    pub_date: {},
+                    body: {}
+                }
+            }
+        }
+    }
+
+=head2 Annotated Data
+
+    {
+        url: "http://www.yahoo.cn",
+        patterns: {},
+        data: {
+            comment: [
+                {xpath: [], title:[], pub_date:[], body:[]},
+                {xpath: [], title:[], pub_date:[], body:[]},
+                {xpath: [], title:[], pub_date:[], body:[]},
+            ]
+        }
+    }
+
+    =>
+
+    {
+        url: "http://www.yahoo.cn",
+        patterns : {
+            comment: {
+                type: "node",
+                occur_type: "multiple",
+                xpath: [],
+
+                patterns: {
+                    title: {},
+                    pub_date: {},
+                    body: {}
+                }
+            }
+        }
+    }
+
+=head2 Wrapper
+
+    {
+        domain: "yahoo.cn",
+        patterns : {
+            comment: {
+                type: "node",
+                occur_type: "multiple",
+                selector: "",
+                conditions: [
+                    {type: "", },
+                    {type: "", },
+                ],
+                seqs: ["", ""],
+                vdoms: ["", ""],
+
+                patterns: {
+
+                }
+            }
+       }
+    }
+
+=head2 Result
+
+    {
+        url:"",
+        patterns: {},
+        result:{
+            comment: [
+                {title: "", body: ""},
+            ]
+        }
+    }

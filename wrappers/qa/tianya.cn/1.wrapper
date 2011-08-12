@@ -1,0 +1,31 @@
+{
+    "childPatterns": {
+        "question": {
+            "occur_type": "single",
+            "required": "yes",
+            "selector": "BODY>DIV#wmfroot>TABLE>TBODY>TR>TD>DIV>TABLE.wmfcCSS>TBODY>TR>TD>DIV#wttpth>TABLE.wvtbCSS>TBODY>TR>TD>DIV.wpcprootCSS>DIV#wpcpiroot>DIV.wpcpsCSS"
+        },
+
+        "pub_time": {
+            "required": "yes",
+            "data_type": "datetime",
+            "selector": "BODY>DIV#wmfroot>TABLE>TBODY>TR>TD>DIV>TABLE.wmfcCSS>TBODY>TR>TD>DIV#wttpth>TABLE.wvtbCSS>TBODY>TR>TD>DIV.wpcprootCSS>DIV#wpcpiroot>DIV.wpcppcCSS>DIV.wpcppmcCSS>DIV.wpcpchrCSS>SPAN.wpcptsCSS"
+        },
+
+        "description": {
+            "type": "text",
+            "occur_type": "single",
+            "selector": "BODY>DIV#wmfroot>TABLE>TBODY>TR>TD>DIV>TABLE.wmfcCSS>TBODY>TR>TD>DIV#wttpth>TABLE.wvtbCSS>TBODY>TR>TD>DIV.wpcprootCSS>DIV#wpcpiroot>DIV.wpcppcCSS>DIV.wpcppmcCSS>DIV.wpcpdCSS"
+        },
+
+        "best_answers": {
+            "occur_type": "multiple",
+            "selector": "BODY>DIV#wmfroot>TABLE>TBODY>TR>TD>DIV>TABLE.wmfcCSS>TBODY>TR>TD>DIV#wttpth>TABLE.wvtbCSS>TBODY>TR>TD>DIV.wpcprootCSS>DIV.wpcpbaCSS>DIV#wpcpiroot>DIV.wpcCSS>DIV.wpcppCSS>DIV.wpcppmcCSS>DIV.wpcpdCSS>SPAN#whlm"
+        },
+
+        "other_answers": {
+            "occur_type": "multiple",
+            "selector": "BODY>DIV#wmfroot>TABLE>TBODY>TR>TD>DIV>TABLE.wmfcCSS>TBODY>TR>TD>DIV#wttpth>TABLE.wvtbCSS>TBODY>TR>TD>DIV>DIV.wpcprootCSS>DIV.wpcpnfCSS>DIV#wpcpiroot>DIV.wpcCSS>DIV.wpcppCSS>DIV.wpcppmcCSS>DIV.wpcpdCSS"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+bin=$(readlink -f `dirname $0`)
+cd $bin/..
+
+rm tmon.out
+perl -d:DProf bin/markit-extract.pl --app=comment tmp/vdom
+dprofpp -I "$@"
+
+

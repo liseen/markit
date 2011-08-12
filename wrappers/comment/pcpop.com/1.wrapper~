@@ -1,0 +1,92 @@
+{
+    "samples": [
+        "http://product.pcpop.com/Comment_39812_1.html"
+    ],
+
+    "childPatterns": {
+        "product_name": {
+            "selector": [
+                "BODY>DIV#commentary_finally>DIV",
+                "BODY>DIV#commentary_finally_title"
+            ],
+            "filters": "的产品评论\\s*$",
+            "conditions": [
+                {"attr": "content", "cond": "=~", "value": "(?:^当前位置|的产品评论\\s*$)"},
+            ]
+        },
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": [
+                    "BODY>DIV>DIV#commentary_finally_left>DIV>DIV.xcyoqmp3",
+                    "BODY>CENTER>DIV.p>DIV.pz>DIV.pd1>DIV.pf>DIV.p5a>DIV.xcyoqmp3"
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "data_type": "(\\S+)",
+                    "required": "yes",
+                    "selector": "DIV.xcyoqmp3>DIV.xcyoqmp32>DIV.xcyoqmp34>DIV.xcyoqmp342"
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.xcyoqmp3>DIV.xcyoqmp31>DIV.xcyoqmp312>A"
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.xcyoqmp3>DIV.xcyoqmp32>DIV.xcyoqmp34>DIV.xcyoqmp342",
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    #"data_type": "([^\\s\\(]+)\t?(\\(\\d.+\\))(\\(\\d.+\\))?",
+                    "selector": "DIV.xcyoqmp3>DIV.xcyoqmp32>DIV.xcyoqmp33",
+                    "filters": [
+                        "\\(\\s?\\d+回复\\)$",
+                        "\\(查看全部\\)"
+                    ]
+                },
+
+                "rating": {
+                    "type": "node_count",
+                    "required": "yes",
+                    "selector": "DIV.xcyoqmp3>DIV.xcyoqmp31>DIV>DIV>SPAN>IMG",
+                    "conditions": [
+                        {"type": "src", "cond": "=~", "value": "xing1"}
+                    ]
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "number",
+
+                    "selector": "DIV.xcyoqmp3>DIV.xcyoqmp32>DIV.xcyoqmp34>DIV.xcyoqmp341>A",
+                    "conditions": [
+                        {"type": "content", "cond": "=~", "value": "有用"}
+                    ]
+                },
+
+                "thumb_downs": {
+                    "required": "yes",
+                    "data_type": "number",
+                    "selector": "DIV.xcyoqmp3>DIV.xcyoqmp32>DIV.xcyoqmp34>DIV.xcyoqmp341>A",
+                    "conditions": [
+                        {"type": "content", "cond": "=~", "value": "没用"}
+                    ]
+                }
+           }
+        }
+    }
+}

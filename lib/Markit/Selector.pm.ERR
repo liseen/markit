@@ -1,0 +1,29 @@
+
+There is no previous '(' to match a ')' on line 85
+85: $vnode = first { $_->tagName eq $tag_name && $index-- == 0) } $v ...
+                                                              ^
+
+120: return $class::new(status=>STATUS_WRAPPED,target_attr=>$target_a ...
+            -----------^                                                 
+found ( where operator expected (previous token underlined)
+
+Do you mean '$class::new->(' ?
+
+129: return $class::new(status=>STATUS_MARKED,xpath=>$xpath,target_at ...
+            -----------^                                                 
+found ( where operator expected (previous token underlined)
+
+Do you mean '$class::new->(' ?
+
+140: return $class::new(status=>STATUS_MARKED,xpath=>$xpath,target_at ...
+            -----------^                                                 
+found ( where operator expected (previous token underlined)
+
+Do you mean '$class::new->(' ?
+
+154: return $class::new(status=>STATUS_WRAPPED,target_attr=>$target_a ...
+            -----------^                                                 
+found ( where operator expected (previous token underlined)
+
+Do you mean '$class::new->(' ?
+188:	To save a full .LOG file rerun with -g

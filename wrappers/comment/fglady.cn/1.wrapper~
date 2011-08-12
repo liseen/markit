@@ -1,0 +1,67 @@
+{
+    "samples": [
+        "http://www.fglady.cn/BMsgL/07/TopicL_7119_1_2.html",
+    ],
+    "childPatterns": {
+        "product_name": {
+            "selector": "BODY>DIV#wrapperA>DIV#wrapperB>DIV#container>DIV#middlecontent>DIV.pd-deta>DIV.pd-content>DIV.pd-content-left>TABLE>TBODY>TR>TD",
+            "conditions": [
+                {"attr": "pre.textContent", "cond": "=~", "value": "^\\s*名\\s*称\\s*$"}
+            ]
+        },
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV#wrapperA>DIV#wrapperB>DIV#container>DIV#middlecontent>DIV>DIV.discuess-main>TABLE",
+
+            "conditions": [
+               { "attr": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "TABLE>TBODY>TR>TD>TABLE.t1>TBODY>TR>TD>FONT",
+                },
+
+                "title": {
+                    "required": "no",
+                    "selector": "",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "TABLE>TBODY>TR>TD>TABLE.t1>TBODY>TR>TD",
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "TABLE>TBODY>TR>TD>TABLE.t1>TBODY>TR>TD>TABLE>TBODY>TR>TD>FONT",
+                    "conditions": [
+                    ]
+                },
+
+                "rating": {
+                    "required": "no",
+                    "selector": "",
+                },
+
+                "thumb_ups": {
+                },
+
+                "thumb_downs": {
+                },
+           }
+        }
+    }
+}

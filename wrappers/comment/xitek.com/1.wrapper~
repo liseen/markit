@@ -1,0 +1,104 @@
+{
+    "samples": [
+        "http://www2.xitek.com/product/showproduct.php?productid=11",
+    ],
+
+    "childPatterns": {
+        "product_name": {
+            "required": "yes",
+            "selector": "BODY#all>TABLE>TBODY>TR>TD>FONT>FONT"
+        },
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY#all>TABLE",
+
+            "conditions": [
+               { "attr": "area", "cond": ">", "value": 50000 },
+               { "attr": "h", "cond": ">", "value": 100 },
+               { "attr": "content", "cond": "=~", "value": "总评" },
+               { "attr": "content", "cond": "=~", "value": "操作性" },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector":  [
+                        "TABLE>TBODY>TR>TD>B",
+                        "TABLE>TBODY>TR>TD>A>B"
+                    ]
+                },
+
+                "title": {
+                    #"required": "yes",
+                    #"selector": ""
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "TABLE>TBODY>TR>TD>FONT",
+
+                    "conditions": [
+                        {"attr": "content", "cond": "!~", "value": "注\\s*册" },
+                        {"attr": "x", "cond": "<", "value": 400}
+                    ]
+                },
+
+                "strong_point": {
+                    "selector": "TABLE>TBODY>TR>TD>TABLE>TBODY>TR>TD",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "^优点：$" },
+                        {"attr": "x", "cond": "<", "value": 400}
+                    ],
+                    "filters": [
+                        "\\[.*?编辑于.*?\\]$"
+                    ]
+                },
+
+                "weak_point": {
+                    "selector": "TABLE>TBODY>TR>TD>TABLE>TBODY>TR>TD",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "^缺点：$"},
+                        {"attr": "x", "cond": "<", "value": 400}
+                    ],
+
+                    "filters": [
+                        "\\[.*?编辑于.*?\\]$"
+                    ]
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "TABLE>TBODY>TR>TD>TABLE>TBODY>TR>TD",
+                    "conditions": [
+                        {"attr": "x", "cond": "<", "value": 400},
+                        {"attr": "pre_text", "cond": "=~", "value": "^总评：$"},
+                    ],
+                    "filters": [
+                    "\\[.*?编辑于.*?\\]$"
+                    ]
+                },
+
+                "rating": {
+                    #"required": "yes",
+                    "data_type":"^\\s*(\\d\\.\\d\\d)\\s*$",
+
+                    "selector": "TABLE>TBODY>TR>TD>TABLE>TBODY>TR>TD",
+                    "conditions": [
+                        {"attr": "x", "cond": ">", "value": 650}
+                    ]
+                },
+
+                "thumb_ups": {
+                },
+
+                "thumb_downs": {
+                },
+           }
+        }
+    }
+}

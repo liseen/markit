@@ -1,0 +1,33 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "type": "node",
+            "occur_type": "multiple",
+            "selector": [
+                "BODY>CENTER>DIV>DIV.maintable>DIV.spaceborder",
+             ],
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": "DIV.spaceborder>TABLE.t_row>TBODY>TR>TD.t_user>A.bold",
+                },
+
+                "pub_time": {
+                    #"required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.spaceborder>TABLE.t_row>TBODY>TR>TD>TABLE.t_msg>TBODY>TR>TD>DIV>DIV",
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": "DIV.spaceborder>TABLE.t_row>TBODY>TR>TD>TABLE.t_msg>TBODY>TR>TD.line>DIV.t_msgfont",
+                }
+            }
+        }
+    }
+}

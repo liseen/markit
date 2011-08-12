@@ -1,0 +1,37 @@
+1. install xming (default)
+2. run xLaunch
+3. Multiple windows(default)
+    Display number 设置，值的范围一般取一个大于100的数， 不要跟别人的一样就可以了。
+
+4.  => 下一步
+    => Start a program
+    => 下一步
+    => Using Putty
+    => Connect to computer: 192.168.207.160
+       Login as user: jianghong
+       Password: 1234
+    => 下一步
+    => 下一步
+    => 完成
+
+
+5. 成功的话会跳出 一个命令行框， 输入:
+    /home/admin/vdom/VdomBrowser/bin/VdomBrowser
+    然后回车
+
+6. 应该可以看到VdomBrowser启动成功
+
+浏览框中输入：
+    http://detail.zol.com.cn/166/165918/review.shtml
+
+    回车就可以了
+
+
+7. 如何设置批量Url
+    Perferences
+    Url Iterator 里面设置文件名
+
+    如何编辑url文件， 可以输入命令 gedit xhunter/markit/tmp/list, 修改后保存就可以了
+
+
+

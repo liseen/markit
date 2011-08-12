@@ -1,0 +1,96 @@
+{
+    "samples": [
+        "http://product.pconline.com.cn/mobile/nokia/257759_comment.html"
+    ],
+
+    "childPatterns": {
+        "product_name": {
+            #"required": "yes",
+            "selector": "BODY>DIV.main>DIV.left760>DIV.commBox>DIV.boxThead>DIV.theadIn>SPAN.mark",
+            "filters": "网友点评\\s*$",
+            "conditions": [
+                {"attr": "content", "cond": "=~", "value": "网友点评\\s*$"},
+            ]
+        },
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": [
+                "BODY>DIV.main>DIV.left760>DIV.commBox>DIV.boxBody>UL.ulMax>LI",
+            ],
+
+            "conditions": [
+               #{ "type": "area", "cond": ">", "value": 50000 },
+               #{ "type": "w", "cond": ">", "value": 600 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": "LI>DIV.user>I.iName>A"
+                },
+
+                "title": {
+                    #"required": "yes",
+                    "selector": "LI>DIV.userText>I.iTitle"
+                },
+
+                "pub_time": {
+                    #"required": "no",
+                },
+
+
+                 "summary": {
+                    #"required": "yes",
+                    "selector": "LI>DIV.userText>I.iText>SPAN>I",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "^总\\s*结\\s*：\\s*$"}
+                    ]
+                },
+
+                "strong_point": {
+                    #"required": "yes",
+                   "selector": "LI>DIV.userText>I.iText>SPAN>I",
+                   "conditions": [
+                       {"type": "pre_text", "cond": "=~", "value": "^优\\s*点\\s*：\\s*$" }
+                   ]
+
+                },
+
+                "weak_point": {
+                    #"required": "yes",
+                    "selector": "LI>DIV.userText>I.iText>SPAN>I",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "^缺\\s*点\\s*：\\s*$"}
+                    ]
+                },
+
+                "rating": {
+
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "number",
+
+                    "selector": "LI>DIV.userText>I.iDes>SPAN.inputBt>A",
+                    "conditions": [
+                        {"type": "content", "cond": "=~", "value": "\\s*赞\\s*成"}
+                    ]
+                },
+
+                "thumb_downs": {
+                    "required": "yes",
+                    "data_type": "number",
+                    "selector": "LI>DIV.userText>I.iDes>SPAN.inputBt>A",
+                    "conditions": [
+                        {"type": "content", "cond": "=~", "value": "\\s*反\\s*对"}
+                    ]
+                },
+           }
+        }
+    }
+}

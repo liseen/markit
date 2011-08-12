@@ -1,0 +1,45 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "type": "node",
+            "occur_type": "multiple",
+            "required": "yes",
+            "selector": [
+                "BODY#viewthread>DIV#wrap>DIV#postlist>DIV.viewthread_table",
+                "BODY>DIV.wrap>FORM>DIV.mainbox",
+             ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": [
+                        "DIV.viewthread_table>TABLE>TBODY>TR>TD.postauthor>DIV.postinfo>A",
+                        "DIV.mainbox>TABLE>TBODY>TR>TD.postauthor>CITE>A.dropmenu",
+                    ]
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": [
+                        "DIV.viewthread_table>TABLE>TBODY>TR>TD.postcontent>DIV.postinfo>DIV.posterinfo>DIV.authorinfo>EM",
+                        "DIV.mainbox>TABLE>TBODY>TR>TD.postcontent>DIV.postinfo",
+                    ]
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": [
+                        "DIV.viewthread_table>TABLE>TBODY>TR>TD.postcontent>DIV.defaultpost>DIV.postmessage>DIV>TABLE>TBODY>TR>TD.t_msgfont",
+
+                        "DIV.mainbox>TABLE>TBODY>TR>TD.postcontent>DIV.postmessage>DIV.t_msgfont",
+                    ]
+                }
+            }
+        }
+    }
+}

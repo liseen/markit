@@ -1,0 +1,16 @@
+#!/bin/sh
+
+export PATH=/home/nanyu/perl-5.11-install/bin:$PATH
+
+bin=$(readlink -f `dirname $0`)
+
+PERL=perl
+if [ -d /home/admin/vdom/perl ]
+then
+    PERL=/home/admin/vdom/perl/bin/perl5.11.1
+fi
+
+$PERL $bin/../bin/markit-detect-failure.pl $@
+
+
+

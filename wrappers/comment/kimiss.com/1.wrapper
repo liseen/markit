@@ -1,0 +1,70 @@
+{
+    "samples": [
+        "http://product.kimiss.com/product/7750/",
+        ],
+    "childPatterns": {
+        "product_name": {
+            "required": "yes",
+            "selector": "BODY>DIV.content_main>DIV.content_main>DIV.content_5t_nol>DIV.content_leftzone>DIV.inner_center>DIV.title>H1",
+            },
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV.content_main>DIV.content_main>DIV.content_5t_nol>DIV.content_leftzone>DIV.inner_center>DIV.single_comment",
+
+            "conditions": [
+              # { "attr": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.single_comment>DIV.lzone>DIV.font3>A",
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.single_comment>DIV.rzone>DIV.zone1>A.link1>B>SPAN.font2",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.single_comment>DIV.rzone>DIV.zone1>SPAN.hui",
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.single_comment>DIV.rzone>DIV.font3>SPAN",
+                    "conditions": [
+                        {"attr": "id", "cond": "=~", "value": "info_\\d+_type1" },
+                    ],
+                    "filters": [
+                        "闺蜜网",
+                        "www.kimiss.com",
+                        ],
+                },
+
+                "rating": {
+                    "required": "yes",
+                    "data_type": "star(\\d)00.gif",
+                    "selector": "DIV.single_comment>DIV.rzone>DIV.zone1>IMG",
+                },
+
+                "thumb_ups": {
+                },
+
+                "thumb_downs": {
+                },
+           }
+        }
+    }
+}

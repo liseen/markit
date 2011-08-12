@@ -1,0 +1,28 @@
+{
+    "samples": [
+        "http://sh.tuniu.com/tours/31914"
+    ],
+
+    "childPatterns": {
+        "title": {
+            "selector": "",
+        },
+
+        "from_city": {
+            "selector": "",
+        },
+
+        "price": {
+
+        },
+
+        "day_trips": {
+            "type": "node",
+
+
+        }
+
+
+
+    }
+}

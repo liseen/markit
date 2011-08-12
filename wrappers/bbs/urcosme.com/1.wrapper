@@ -1,0 +1,40 @@
+{
+    "childPatterns": {
+        "title": {
+            "required": "yes",
+
+            "selector": "BODY>DIV#headerpageHelpBlock>H1",
+            "filters": "^\\s*討論話題:",
+        },
+
+        "post": {
+            "required": "yes",
+            "type": "node",
+            "occur_type": "multiple",
+            "selector": [
+                "BODY>DIV#container>DIV.contentpageContainer>DIV#contentpage>DIV#contentpageBoardsContentContainer>DIV.contentpageBoardsTopicBlock>DIV",
+             ],
+             "conditions": [
+                {"attr": "className", "cond": "=~", "value": "contentpageBoardsMessageLevel"},
+             ],
+
+            "childPatterns": {
+                "author": {
+                    #"required": "yes",
+                    "selector": "DIV>UL.boardsuserInfotBlock>LI>A",
+                },
+
+                "pub_time": {
+                    #"required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV>DIV.boardMessageBlock>H3>SPAN",
+                },
+
+                "content": {
+                    #"required": "yes",
+                    "selector": "DIV>DIV.boardMessageBlock>P",
+                }
+            }
+        }
+    }
+}

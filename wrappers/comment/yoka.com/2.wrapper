@@ -1,0 +1,89 @@
+{   "samples": [
+        "http://brand.yoka.com/cosmetics/loreal/commentreply1659718.htm",
+        ],
+    "childPatterns": {
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            
+            "selector": "BODY>DIV.centess>FORM#aspnetForm>DIV.b>DIV.con2>DIV.left>DIV.b5>DIV.c14",
+
+
+            "conditions": [
+               { "attr": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.c14>DIV.m2>DIV.m2lf>I.color2>A",
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.c14>DIV.m2>DIV.m2rg>B.st3>A",
+                    "conditions": [
+                        {"attr": "id", "cond": "=~", "value": "CommentTitle"},
+                    ],
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.c14>DIV.m2>DIV.m2rg>DIV.fb3>EM",
+                },
+
+                "strong_point": {
+                    "required": "no",
+                    "selector": "",
+                    "conditions": [
+                    ]
+                },
+
+                "weak_point": {
+                    "required": "no",
+                    "selector": "",
+                    "conditions": [
+                    ]
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.c14>DIV.m2>DIV.m2rg>DIV.condiv",
+                    "conditions": [
+                    ]
+                },
+
+                "rating": {
+                    "required": "no",
+                    "type": "node_count",
+                    "selector": "DIV.c14>DIV.m2>DIV.m2rg>DL>DD>IMG",
+                    "conditions": [
+                    {"attr": "src", "cond": "=~", "value": "yes.gif" },
+                    ],
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "number",
+
+                    "selector": "DIV.c14>DIV.m2>DIV.m2rg>DIV.fb3>EM>SPAN",
+                    "conditions": [
+                        
+                    ]
+                },
+
+                "thumb_downs": {
+                    "required": "no",
+                    "data_type": "number",
+                    "selector": "",
+                    "conditions": [
+                        {"attr": "content", "cond": "=~", "value": "没"}
+                    ]
+                },
+           }
+        }
+    }
+}

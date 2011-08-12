@@ -1,0 +1,44 @@
+{
+    "childPatterns": {
+        "title": {
+        },
+
+        "post": {
+            "type": "node",
+            "occur_type": "multiple",
+            "required": "yes",
+
+            "selector": [
+                "BODY>DIV#content>DIV#topic_wrap>DIV#post_list>DIV.post_wrap_first",
+                "BODY>DIV#content>DIV#topic_wrap>DIV#post_list>FORM#rewardform>DIV.post_wrap",
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": [
+                        "DIV.post_wrap_first>TABLE>TBODY>TR>TD.post_left>DIV.user_info>UL>LI.nickname>A",
+                        "DIV.post_wrap>TABLE>TBODY>TR>TD.post_left>DIV.user_info>UL>LI.nickname>A",
+                    ]
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": [
+                        "DIV.post_wrap_first>TABLE>TBODY>TR>TD.post_right>DIV.post_info>DIV.post_time",
+                        "DIV.post_wrap>TABLE>TBODY>TR>TD.post_right>DIV.post_info>DIV.post_time",
+                    ]
+                },
+
+                "content": {
+                    "required": "yes",
+                    "selector": [
+                        "DIV.post_wrap_first>TABLE>TBODY>TR>TD.post_right>DIV.post_main>DIV.post_message>DIV.normal_msg>TABLE>TBODY>TR>TD.post_msg_wrap>DIV.post_msg",
+                        "DIV.post_wrap>TABLE>TBODY>TR>TD.post_right>DIV.post_main>DIV.post_message>DIV.normal_msg>TABLE>TBODY>TR>TD.post_msg_wrap>DIV.post_msg"
+                    ]
+                }
+            }
+        }
+    }
+}

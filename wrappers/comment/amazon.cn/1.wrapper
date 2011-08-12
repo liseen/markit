@@ -1,0 +1,78 @@
+{
+    "childPatterns": {
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV#content-more>TABLE.reviewItem>TBODY>TR",
+
+            "conditions": [
+               { "type": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "TR>TD>DIV#reviewAuthor>SPAN.tiny>A.Author"
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "TR>TD>DIV#reviewInfo>SPAN.reviewTle>A"
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "TR>TD>DIV#reviewInfo>SPAN.tiny"
+                },
+
+                "strong_point": {
+                    "required": "no",
+                    "selector": "",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "优点" }
+                    ]
+                },
+
+                "weak_point": {
+                    "required": "no",
+                    "selector": "",
+                    "conditions": [
+                        {"type": "pre_text", "cond": "=~", "value": "缺点"}
+                    ]
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "TR>TD>DIV#reviewBody>DIV",
+                    "filters": [
+                        "\\(回复\\)$"
+                    ]
+                },
+
+                "rating": {
+                    "required": "no",
+                    "type": "node_count",
+                    "selector": "TR>TD>DIV#reviewAuthor>IMG",
+                    "conditions": [
+                        {"type": "src", "cond": "=~", "value": "star-fen"}
+                    ]
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "(\\d+)",
+                    "selector": "TR>TD>DIV#linkInfo>SPAN.tiny",
+                },
+
+                "thumb_downs": {
+                    "required": "yes",
+                    "data_type": "\\/(\\d+)",
+                    "selector": "TR>TD>DIV#linkInfo>SPAN.tiny",
+                }
+           }
+        }
+    }
+}

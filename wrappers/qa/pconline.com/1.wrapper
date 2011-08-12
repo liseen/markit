@@ -1,0 +1,51 @@
+{
+    "childPatterns": {
+        "question": {
+            "occur_type": "single",
+            "required": "yes",
+            "selector": "BODY>DIV.main>DIV.box950>DIV.left718>DIV.qnbox_l3>DIV.box_con>H1"
+        },
+
+        "pub_time": {
+            #"required": "yes",
+            "data_type": "datetime",
+            "selector": ""
+        },
+
+        "description": {
+            "type": "text",
+            "occur_type": "single",
+            "selector": "BODY>DIV.main>DIV.box950>DIV.left718>DIV.qnbox_l3>DIV.box_con>P",
+            "conditions": [
+                {"attr": "pre.textContent", "cond": "=~", "value": "时间"},
+            ]
+        },
+
+        "best_answers": {
+            "occur_type": "multiple",
+            "selector": "BODY>DIV.main>DIV.box950>DIV.left718>DIV.qnbox_l5>DIV.box_con>P.f14px",
+            "conditions": [
+                {"attr": "content", "cond": "!~", "value": "级\\s*$"},
+                {"attr": "content", "cond": "!~", "value": "^\\s*好不好\\s*$"},
+                {"attr": "content", "cond": "!~", "value": "^[\\d%()\\s]*$"},
+                {"attr": "content", "cond": "!~", "value": "快问蚁工\\)\\s*$"},
+                {"attr": "content", "cond": "!~", "value": "^个性展示"},
+                {"attr": "pre.textContent", "cond": "!~", "value": "评论:$"},
+            ]
+        },
+
+        "other_answers": {
+            "occur_type": "multiple",
+            "selector": [
+                "BODY>DIV.main>DIV.box950>DIV.left718>DIV.qnbox_l4>DIV.box_con>P.f14px"
+            ],
+            "conditions": [
+                {"attr": "content", "cond": "!~", "value": "级\\s*$"},
+                {"attr": "content", "cond": "!~", "value": "^\\s*好不好\\s*$"},
+                {"attr": "content", "cond": "!~", "value": "^[\\d%()\\s]*$"},
+                {"attr": "content", "cond": "!~", "value": "快问蚁工\\)\\s*$"},
+                {"attr": "content", "cond": "!~", "value": "^个性展示"},
+            ]
+        }
+    }
+}

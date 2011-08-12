@@ -1,0 +1,14 @@
+#!/bin/sh
+
+export PATH=/usr/local/bin:$PATH
+
+bin=$(readlink -f `dirname $0`)
+
+vdomfile="$1"
+if [ -z $vdomfile ]; then
+    vdomfile="$bin/../tmp/vdom"
+fi
+
+$bin/../bin/extract --app=qa "$vdomfile"
+
+

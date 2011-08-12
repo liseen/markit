@@ -1,0 +1,70 @@
+{
+    "childPatterns": {
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV.comm_body>DIV.all_comm_left>DIV.preview_content",
+
+            "conditions": [
+               { "type": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.preview_content>DIV.preview_content_bg>DIV.buyer>P>A",
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.preview_content>DIV.preview_content_bg>DIV.buyer_comm>DIV.center_topbg>DIV.title_time>H3>A",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.preview_content>DIV.preview_content_bg>DIV.buyer_comm>DIV.center_border>DIV.appear_time>SPAN.mode_time",
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "type": "node_text_combine",
+                    "selector": "DIV.preview_content>DIV.preview_content_bg>DIV.buyer_comm>DIV.center_border>P",
+                },
+
+                "rating": {
+                    "type": "node_count",
+
+                    "selector": "DIV.preview_content>DIV.preview_content_bg>DIV.buyer_comm>DIV.center_topbg>DIV.comm_result>SPAN.span_star>IMG",
+                    "conditions": [
+                        {"attr": "src", "cond": "=~", "value": "red"}
+                    ]
+                },
+
+                "thumb_ups": {
+                    #"required": "yes",
+                    "data_type": "number",
+
+                    "selector": "DIV.preview_content>DIV.preview_content_bg>DIV.buyer_comm>DIV.reading>DIV.good_use2>DIV>SPAN",
+                },
+
+                "thumb_downs": {
+                    #"required": "yes",
+                    "data_type": "(\\d+)人认为此评论没用",
+                    "selector": "DIV.preview_content>DIV.preview_content_bg>DIV.buyer_comm>DIV.reading>DIV.good_use2>DIV>SPAN",
+                    "conditions": [
+                        #{"attr": "content", "cond": "=~", "value": "认为此评论没用"}
+                    ]
+                },
+           }
+        }
+    }
+}

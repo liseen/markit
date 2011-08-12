@@ -1,0 +1,77 @@
+{
+    "samples": [
+       "http://cosme.pclady.com.cn/product_comment_list/29577.html",
+       "http://cosme.pclady.com.cn/product_comment_list/2165.html",
+       "http://cosme.pclady.com.cn/product_comment_list/8230.html",
+       "http://cosme.pclady.com.cn/product_comment_list/29805.html",
+       "http://cosme.pclady.com.cn/product_comment_list/10737.html",
+    ],
+
+    "data": {
+        "rating_base": 10
+     },
+
+    "childPatterns": {
+        "product_name": {
+            #"required": "yes",
+            "selector": [
+                "BODY>DIV.main1000>DIV.main990>DIV.inner>DIV.left740>DIV.thead>SPAN.theMark>A",
+            ]
+        },
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV.main1000>DIV.main990>DIV.inner>DIV.left740>DIV.listborder3>UL.comments>LI",
+            "conditions": [
+               { "type": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",  
+                    "selector": [
+                        "LI>I.user>SPAN.userInfo>SPAN.font1",
+                        "LI>I.user>SPAN.userInfo>A.font1",
+                    ],
+
+                },
+
+                "title": {
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "LI>I.user>SPAN.issueTime",    
+                    },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "LI>I.tbody>SPAN.commentDisc>EM.commentDetail",                               },
+
+                "rating": {
+                    "required": "yes",
+                    "data_type": "(\\d{1,2}\\.\\d)分",
+                    #"data_type": "number",
+                    "selector": "LI>I.user>SPAN.issueTime",
+                    },
+
+                "thumb_ups": {
+
+                },
+
+                "thumb_downs": {
+                },
+           }
+        }
+    }
+}

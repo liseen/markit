@@ -1,0 +1,78 @@
+{
+    "samples": [
+        "http://product.aibiwang.com/review_d_19-57608",
+        ],
+    "childPatterns": {
+        "product_name": {
+            "required": "yes",
+            "selector":"BODY>DIV.w960>DIV.w696_l>DIV.listReviews>DIV.cont>H4>A",
+            },
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV.w960>DIV.w696_l",
+
+            "conditions": [
+               { "attr": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.w696_l>DIV.listReviews>DIV.cont>DIV.caption>A",
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.w696_l>H1.f22px",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.w696_l>DIV.listReviews>DIV.cont>DIV.bot>SPAN.l>EM.cDGray",
+                },
+
+                "strong_point": {
+                    "required": "no",
+                    "selector": "DIV.w696_l>DIV.listReviews>DIV.cont>DL.point>DD",
+                    "conditions": [
+                    {"attr": "pre_text", "cond": "=~", "value": "优点" },
+                    ]
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.w696_l>DIV.listReviews>DIV.cont>P.f14px",
+                    "conditions": [
+                    ]
+                },
+
+                "product_name": {
+                    "required": "yes",
+                    "selector": "DIV.w696_l>DIV.listReviews>DIV.cont>H4>A",
+                    },
+
+                "rating": {
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "number",
+
+                    "selector": "DIV.w696_l>DIV.listReviews>DIV.cont>DIV.bot>SPAN.r>EM",
+                    "conditions": [
+                    ]
+                },
+
+                "thumb_downs": {
+                },
+           }
+        }
+    }
+}

@@ -1,0 +1,77 @@
+{
+    "childPatterns": {
+        "product_name": {
+            "required": "yes",
+            "selector": "BODY>FORM>DIV.Content>DIV.pl_bg>DIV.tit1",
+            "filters": "点评\\s*$"
+        },
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>FORM>DIV.Content>DIV.Leftcont>DIV.pl_bor>DIV>DIV.w713",
+
+            "conditions": [
+               { "type": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.w713>DIV.pl_r1>DIV.w625>SPAN",
+                    "conditions": [
+                        { "type": "content", "cond": "!~", "value": "回复"},
+                    ],
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.w713>DIV.pl_r1>DIV.tit3>A",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.w713>DIV.pl_r1>DIV.w625>SPAN>DIV.w310",
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.w713>DIV.pl_r1>DIV.w625>P",
+                },
+
+                "rating": {
+                    #"required": "yes",
+                    "type": "node_count",
+                    "selector": "DIV.w713>DIV.pl_r1>DIV.w625>SPAN>IMG",
+
+                    "conditions": [
+                        {"type": "src", "cond": "=~", "value": "xing"}
+                    ]
+
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "(\\d+)/\\d+",
+
+                    "selector": "DIV.w713>DIV.pl_r1>DIV.w625>SPAN>DIV#topic_com",
+                },
+
+                "thumb_totals": {
+                    "required": "yes",
+                    "data_type": "/(\\d+)",
+                    "selector": "DIV.w713>DIV.pl_r1>DIV.w625>SPAN>DIV#topic_com",
+                },
+           }
+        }
+    }
+}

@@ -1,0 +1,90 @@
+{
+
+    "samples": [
+        "http://www.douban.com/subject/3989541/reviews",
+    ],
+
+    "data": {
+        "rating_base": 10,
+    },
+
+    "childPatterns": {
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV#wrapper>DIV#content>DIV.grid-16-8>DIV.article>DIV.ctsh",
+
+            "conditions": [
+               { "type": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.ctsh>UL.tlst>LI.clst>SPAN.pl>SPAN.starb>A",
+                          },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.ctsh>UL.tlst>LI.nlst>H3>A",
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.ctsh>UL.tlst>LI.clst>DIV>DIV.pl>SPAN.fleft",
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.ctsh>UL.tlst>LI.clst>DIV",
+                    "filters": [
+                          "\\(回应\\).*$",
+                          "\\d{4}-\\d{2}-\\d{2}.*$",
+                     ],
+                },
+
+                "rating": {
+                    "required": "no",
+                    "type": "className",
+                    "data_type": "number",
+
+                    "selector": "DIV.ctsh>UL.tlst>LI.clst>SPAN.pl>SPAN",
+                    "conditions": [
+                        { "attr": "className", "cond": "=~", "value": "stars"},
+                    ]
+                },
+
+                "thumb_ups": {
+                    "required": "no",
+                    "data_type": "\\s+(\\d+)/\\d+",
+
+                    "selector": "DIV.ctsh>UL.tlst>LI.clst>DIV>DIV.pl>SPAN.fleft",
+
+                    "conditions": [
+                        { "attr": "content", "cond": "=~", "value": "有用"},
+                    ]
+
+                },
+
+                "thumb_total": {
+                    "required": "no",
+                    "data_type": "\\s+\\d+/(\\d+)",
+                    "selector": "DIV.ctsh>UL.tlst>LI.clst>DIV>DIV.pl>SPAN.fleft",
+
+                    "conditions": [
+                        { "attr": "content", "cond": "=~", "value": "有用"},
+                    ]
+                },
+           }
+        }
+    }
+}

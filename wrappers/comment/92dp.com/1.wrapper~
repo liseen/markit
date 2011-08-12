@@ -1,0 +1,73 @@
+{
+    "samples": [
+        "http://www.92dp.com/product/9952-4.htm"
+    ],
+
+    "childPatterns": {
+        "product_name": {
+            "selector": "BODY>DIV.main>DIV>DIV.content>DIV.contentleft>H2.productname",
+        },
+
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": [
+                "BODY>DIV.main>DIV>DIV.content>DIV.contentleft>DIV>DIV>DIV.Commentsbg02",
+                "BODY>DIV.main>DIV>DIV.content>DIV.contentleft>DIV>DIV.Commentsbg02",
+            ],
+
+            "conditions": [
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.Commentsbg02>DIV.Commentsleft02>DIV.headname>A",
+                },
+
+                "title": {
+                    "required": "yes",
+                    "selector": "DIV.Commentsbg02>DIV.Commentsword02>H3"
+                },
+
+                "pub_time": {
+                },
+
+                "strong_point": {
+                    "selector": "DIV.Commentsbg02>DIV.Commentsword02>DIV.videocomments>P",
+                    "conditions": [
+                        {"attr": "pre.src", "cond": "=~", "value": "good"}
+                    ]
+                },
+
+                "weak_point": {
+                    "selector": "DIV.Commentsbg02>DIV.Commentsword02>DIV.videocomments>P",
+                    "conditions": [
+                        {"attr": "pre.src", "cond": "=~", "value": "weak"}
+                    ]
+                },
+
+                "summary": {
+                    "selector": "DIV.Commentsbg02>DIV.Commentsword02>DIV.videocomments>P",
+                    "conditions": [
+                        {"attr": "pre.src", "cond": "=~", "value": "chief"}
+                    ]
+                },
+
+                "rating": {
+                    #"required": "yes",
+                    "data_type": "number",
+                    "selector": "DIV.Commentsbg02>DIV.Commentsword02>DIV.contentStars02>H3>SPAN.color_FF6600",
+                },
+
+                "thumb_ups": {
+                },
+
+                "thumb_downs": {
+                },
+           }
+        }
+    }
+}

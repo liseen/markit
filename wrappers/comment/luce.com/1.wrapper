@@ -1,0 +1,71 @@
+{   "samples": [ 
+        "http://www.luce.com.cn/review/neutrogena/4286.html",
+        "http://www.luce.com.cn/review/za/3710.html",
+        ],
+    "childPatterns": {
+        "product_name": {
+            "required": "yes",
+            "selector": "BODY>DIV#All_Contain>DIV#Left_Content>DIV.Comment_View>DIV.Comment_Path>A",
+            "conditions": [
+                { "attr": "href", "cond": "=~", "value": "product"},
+                ],
+                },
+        "comment": {
+            "type": "node",
+            "occur_type": "multiple",
+
+            "required": "yes",
+            "selector": "BODY>DIV#All_Contain>DIV#Left_Content>DIV.Comment_View>DIV.Review_Box>DIV.A_Review",
+            
+
+            "conditions": [
+              # { "attr": "area", "cond": ">", "value": 50000 },
+            ],
+
+            "childPatterns": {
+                "author": {
+                    "required": "yes",
+                    "selector": "DIV.A_Review>DIV.Float_Left>H2>A",
+                },
+
+                "title": {
+                },
+
+                "pub_time": {
+                    "required": "yes",
+                    "data_type": "datetime",
+                    "selector": "DIV.A_Review>DIV.Float_Left>H2>SPAN",
+                },
+
+                "strong_point": {
+                },
+
+                "weak_point": {
+                },
+
+                "summary": {
+                    "required": "yes",
+                    "selector": "DIV.A_Review>DIV.Float_Left>DIV.Float_Left>DIV.Review_Content>P",
+                    "conditions": [
+                    {"attr": "content", "cond": "!~", "value": "购物地点："}
+                    ]
+                },
+
+                "rating": {
+                },
+
+                "thumb_ups": {
+                    "required": "yes",
+                    "data_type": "number",
+
+                    "selector": "DIV.A_Review>DIV.Float_Left>DIV.Float_Left>DIV.Review_Commend>SPAN",
+                    "conditions": [
+                    ]
+                },
+
+                "thumb_downs": {
+                },
+           }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+export PATH=/usr/local/bin:$PATH
+
+bin=$(readlink -f `dirname $0`)
+
+#perl -v
+host=$1
+if [ -z $1 ]; then
+    host="www.baidu.com";
+fi
+perl -I ../VDOM/lib $bin/qa-induct.pl --pattern=qa --pattern-dir=./patterns/ --host=$host
+

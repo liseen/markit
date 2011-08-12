@@ -1,0 +1,20 @@
+{
+    "childPatterns": {
+        "question": {
+            "occur_type": "single",
+        },
+
+        "description": {
+            "type": "text"
+            "occur_type": "single",
+        },
+
+        "best_answers": {
+            "occur_type": "multiple",
+        },
+
+        "other_answers": {
+            "occur_type": "multiple",
+        }
+    }
+}

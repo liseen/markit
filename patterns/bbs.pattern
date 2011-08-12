@@ -1,0 +1,21 @@
+{
+    "childPatterns": {
+        "title": {
+
+        },
+
+        "post": {
+            "occur_type": "multiple",
+
+            "childPatterns": {
+                "author": {
+                },
+                "pub_time": {
+                },
+                "content": {
+
+                }
+            }
+        }
+    }
+}
